@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Student Savings Tracker</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main class="app">
+  <header class="top">
+    <h1>My savings jar</h1>
+    <label class="cur">Currency
+      <select id="currency">
+        <option value="$">$ USD</option>
+        <option value="₱">₱ PHP</option>
+        <option value="€">€ EUR</option>
+        <option value="£">£ GBP</option>
+        <option value="₹">₹ INR</option>
+        <option value="¥">¥ JPY</option>
+      </select>
+    </label>
+  </header>
+
+  <section class="hero">
+    <div class="jar" aria-hidden="true">
+      <div class="lid"></div>
+      <div class="glass"><div class="fill" id="fill"></div></div>
+    </div>
+    <div class="hero-text">
+      <p class="goal-name" id="goalName">No goal yet</p>
+      <p class="balance" id="balance">0.00</p>
+      <p class="progress-text" id="progressText">Set a goal to see your progress.</p>
+      <div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" id="bar"><span id="barFill"></span></div>
+      <form id="goalForm" class="inline">
+        <input id="goalInput" type="text" placeholder="Goal, e.g. New laptop" maxlength="40" required>
+        <input id="targetInput" type="number" min="1" step="0.01" placeholder="Target amount" required>
+        <button type="submit">Save goal</button>
+      </form>
+    </div>
+  </section>
+
+  <section class="stats">
+    <div><span>Saved in</span><strong id="inTotal">0.00</strong></div>
+    <div><span>Spent out</span><strong id="outTotal">0.00</strong></div>
+    <div><span>This month</span><strong id="monthNet">0.00</strong></div>
+    <div><span>Left to goal</span><strong id="leftTotal">0.00</strong></div>
+  </section>
+
+  <section class="panel">
+    <h2>Add a transaction</h2>
+    <form id="txForm" class="grid">
+      <div class="seg" role="radiogroup" aria-label="Type">
+        <input type="radio" name="type" id="tIn" value="in" checked><label for="tIn">Add savings</label>
+        <input type="radio" name="type" id="tOut" value="out"><label for="tOut">Take out</label>
+      </div>
+      <label>Amount<input id="amount" type="number" min="0.01" step="0.01" required></label>
+      <label>Category
+        <select id="category">
+          <option>Allowance</option><option>Part-time job</option><option>Gift</option>
+          <option>Scholarship</option><option>Other income</option>
+          <option>Food</option><option>School</option><option>Transport</option><option>Fun</option><option>Other</option>
+        </select>
+      </label>
+      <label>Date<input id="date" type="date" required></label>
+      <label class="wide">Note (optional)<input id="note" type="text" maxlength="60"></label>
+      <button type="submit" class="wide">Add transaction</button>
+    </form>
+    <p id="msg" class="msg" role="status"></p>
+  </section>
+
+  <section class="panel">
+    <div class="row">
+      <h2>History</h2>
+      <select id="filter" aria-label="Filter history">
+        <option value="all">All</option>
+        <option value="in">Savings only</option>
+        <option value="out">Withdrawals only</option>
+      </select>
+    </div>
+    <ul id="list" class="list"></ul>
+    <p id="empty" class="empty">Nothing here yet. Add your first saving above.</p>
+    <button id="reset" class="ghost">Clear all data</button>
+  </section>
+</main>
+<script src="script.js"></script>
+</body>
+</html>

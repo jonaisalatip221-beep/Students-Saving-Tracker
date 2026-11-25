@@ -1,0 +1,74 @@
+:root{
+  --bg:#eaf0f6; --card:#ffffff; --ink:#14213d; --muted:#5b6b82; --line:#d5dfeb;
+  --save:#138a72; --spend:#7b2d8e; --gold:#f2a900;
+  --radius:14px;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:"Avenir Next","Segoe UI",system-ui,-apple-system,sans-serif;line-height:1.5}
+.app{max-width:860px;margin:0 auto;padding:24px 16px 48px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px}
+h1{font-size:1.9rem;margin:0;letter-spacing:-.02em}
+h2{font-size:1.15rem;margin:0 0 14px}
+label{display:flex;flex-direction:column;gap:4px;font-size:.85rem;color:var(--muted)}
+input,select,button{font:inherit}
+input[type=text],input[type=number],input[type=date],select{
+  padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--ink)}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+button{cursor:pointer;border:0;border-radius:10px;padding:11px 18px;background:var(--ink);color:#fff;font-weight:600}
+button:hover{background:#22345f}
+.ghost{background:transparent;color:var(--muted);border:1px solid var(--line);margin-top:14px;font-weight:500}
+.ghost:hover{background:#f3f6fa}
+
+.hero{display:grid;grid-template-columns:150px 1fr;gap:28px;align-items:center;
+  background:var(--card);border-radius:var(--radius);padding:26px;margin:20px 0;border:1px solid var(--line)}
+.jar{width:130px;justify-self:center}
+.lid{height:16px;width:76%;margin:0 auto;background:var(--ink);border-radius:6px 6px 2px 2px}
+.glass{position:relative;height:170px;border:4px solid var(--ink);border-top:0;
+  border-radius:4px 4px 34px 34px;overflow:hidden;background:#f6f9fc}
+.fill{position:absolute;left:0;right:0;bottom:0;height:0;background:linear-gradient(var(--gold),#e39500);
+  transition:height .8s cubic-bezier(.2,.8,.2,1)}
+.goal-name{margin:0;color:var(--muted);font-size:.95rem}
+.balance{margin:0;font-size:2.8rem;font-weight:800;letter-spacing:-.03em;line-height:1.1}
+.progress-text{margin:4px 0 10px;color:var(--muted)}
+.bar{height:10px;background:#e4ebf3;border-radius:99px;overflow:hidden;margin-bottom:16px}
+.bar span{display:block;height:100%;width:0;background:var(--save);transition:width .8s}
+.inline{display:flex;flex-wrap:wrap;gap:8px}
+.inline input{flex:1 1 150px;min-width:0}
+
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px}
+.stats div{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:14px}
+.stats span{display:block;font-size:.8rem;color:var(--muted)}
+.stats strong{font-size:1.2rem}
+
+.panel{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px;margin-bottom:20px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.wide{grid-column:1/-1}
+.seg{grid-column:1/-1;display:flex;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.seg input{position:absolute;opacity:0}
+.seg label{flex:1;text-align:center;padding:10px;cursor:pointer;color:var(--ink);font-weight:600}
+#tIn:checked+label{background:var(--save);color:#fff}
+#tOut:checked+label{background:var(--spend);color:#fff}
+#tIn:focus-visible+label,#tOut:focus-visible+label{outline:3px solid var(--gold);outline-offset:-3px}
+.msg{min-height:1.2em;margin:10px 0 0;color:var(--spend);font-size:.9rem}
+.row{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.row h2{margin:0}
+
+.list{list-style:none;margin:0;padding:0}
+.list li{display:grid;grid-template-columns:auto 1fr auto auto;gap:12px;align-items:center;
+  padding:12px 0;border-bottom:1px solid var(--line)}
+.dot{width:10px;height:10px;border-radius:50%}
+.in .dot{background:var(--save)} .out .dot{background:var(--spend)}
+.meta small{display:block;color:var(--muted)}
+.amt{font-weight:700}
+.in .amt{color:var(--save)} .out .amt{color:var(--spend)}
+.del{background:transparent;color:var(--muted);padding:4px 10px;font-size:1.1rem}
+.del:hover{background:#f1e8f4;color:var(--spend)}
+.empty{color:var(--muted);text-align:center;padding:18px 0 0}
+
+@media (max-width:640px){
+  .hero{grid-template-columns:1fr}
+  .stats{grid-template-columns:1fr 1fr}
+  .grid{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
